@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core';
+import AllMeetUps from './AllMeetUps';
 import NavBar from '../NavBar/NavBar';
 import CreateNewMeetUp from './CreateNewMeetUp';
 
@@ -7,6 +7,7 @@ export default function Home() {
     <>
       <NavBar />
       <CreateNewMeetUp />
+      <AllMeetUps />
     </>
   );
 }

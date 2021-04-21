@@ -1,3 +1,3 @@
 export const ERRORS = {
-  required: 'This fild is required',
+  required: 'This field is required',
 };
