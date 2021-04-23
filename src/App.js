@@ -1,17 +1,23 @@
-import { Container } from '@material-ui/core';
+import { Box, Container } from '@material-ui/core';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './components/Home/Home';
+import Login from './components/Login/Login';
 
 export default function App() {
   return (
-    <Container>
+    <Box>
       <Router>
-        <Switch>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
+        <Container>
+          <Switch>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Container>
       </Router>
-    </Container>
+    </Box>
   );
 }

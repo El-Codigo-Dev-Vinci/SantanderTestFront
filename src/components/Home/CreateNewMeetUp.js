@@ -6,9 +6,9 @@ import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { es } from 'date-fns/locale';
 import DateRangeIcon from '@material-ui/icons/DateRange';
 import EditIcon from '@material-ui/icons/Edit';
-import { ERRORS } from '../../text/Text';
+import { TEXT } from '../../text/Text';
 import { LoadingButton } from '../ui/LoadingButton';
-import { axiosPost } from '../../utils/fetchApi';
+import { useApi } from '../../utils/fetchApi';
 import { useNotifyUpdate } from '../../state/stateUpdate';
 
 export default function CreateNewMeetUp() {
@@ -16,6 +16,7 @@ export default function CreateNewMeetUp() {
   const [meetData, setMeetData] = useState({ date: new Date() });
   const [loading, setLoading] = useState(false);
   const notifyUpdate = useNotifyUpdate('meetup');
+  const { create } = useApi('meetup');
 
   const handleDateChange = (e) => {
     setMeetData({ ...meetData, date: new Date(e).toISOString() });
@@ -28,7 +29,7 @@ export default function CreateNewMeetUp() {
   const createNewMeet = async () => {
     setLoading(true);
     try {
-      await axiosPost('meetup', meetData);
+      await create(meetData);
       notifyUpdate();
     } catch (error) {
       console.log('Error trying to post Meet: ' + error);
@@ -100,7 +101,7 @@ export default function CreateNewMeetUp() {
                   value={meetData?.name}
                   onChange={handleData}
                   validators={['required']}
-                  errorMessages={[ERRORS.required]}
+                  errorMessages={[TEXT.required]}
                 />
               </Grid>
               <Grid item xs={8}>
@@ -112,7 +113,7 @@ export default function CreateNewMeetUp() {
                   value={meetData?.description}
                   onChange={handleData}
                   validators={['required']}
-                  errorMessages={[ERRORS.required]}
+                  errorMessages={[TEXT.required]}
                 />
               </Grid>
               <Grid item xs={12} className={classes.spaceBetweenTextField}>

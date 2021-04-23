@@ -1,17 +1,26 @@
-import { Grid, makeStyles, Typography } from '@material-ui/core';
+import { AppBar, Box, makeStyles, Toolbar } from '@material-ui/core';
 import Beer from '../../assets/beer.png';
+import LogOutButton from '../ui/LogOutButton';
 
 export default function NavBar() {
   const classes = useStyles();
 
   return (
-    <Grid container align="center">
-      <Grid item xs={12}>
-        <Grid item xs={12}>
-          <img src={Beer} alt="Beer" className={classes.imgStyle} />
-        </Grid>
-      </Grid>
-    </Grid>
+    <Box>
+      <AppBar position="static">
+        <Toolbar id="back-to-top-anchor">
+          <Box
+            display="flex"
+            flexDirection="row"
+            width="100%"
+            justifyContent="center"
+          >
+            <img src={Beer} alt="Beer" className={classes.imgStyle} />
+          </Box>
+          <LogOutButton />
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 }
 
