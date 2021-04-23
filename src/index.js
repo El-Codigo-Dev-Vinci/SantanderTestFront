@@ -13,7 +13,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { Alert } from '@material-ui/lab';
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
+  <ThemeProvider>
     <React.StrictMode>
       <CssBaseline />
       <RecoilRoot>

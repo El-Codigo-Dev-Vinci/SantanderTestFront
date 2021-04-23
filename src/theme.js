@@ -5,7 +5,7 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       // Como ejemplo, cambiamos el primary por "verde UNaHur".
-      main: '#009673',
+      main: '#5aa123',
     },
   },
 });
