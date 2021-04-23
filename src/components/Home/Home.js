@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <NavBar />
-      {user.role === 'admin' && <CreateNewMeetUp />}
+      {user?.role === 'admin' && <CreateNewMeetUp />}
       <AllMeetUps />
     </>
   );
