@@ -26,7 +26,7 @@ export default function AllMeetUps() {
         </Grid>
         <Grid container spacing={2} align="left">
           {meetUpsRecoil.map((meet, i) => {
-            return !matches ? (
+            return matches ? (
               <Grid item xs={11} sm={6} md={4} key={i}>
                 <CardMeetUp meet={meet} />
               </Grid>

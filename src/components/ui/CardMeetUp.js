@@ -45,7 +45,7 @@ export default function CardMeetUp(props) {
 }
 
 CardMeetUp.propTypes = {
-  meet: PropTypes.obj,
+  meet: PropTypes.object,
 };
 
 const CancelButton = withStyles(({ palette }) => ({

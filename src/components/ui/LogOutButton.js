@@ -4,11 +4,13 @@ import { useState } from 'react';
 import { userState } from '../../state/user';
 import { TEXT } from '../../text/Text';
 import MenuIcon from '@material-ui/icons/Menu';
+import { useHistory } from 'react-router';
 
 export default function BotonCerrarSesion() {
   const [user, setUser] = useRecoilState(userState);
   const [showOptions, setShowOptions] = useState(null);
   const open = Boolean(showOptions);
+  const history = useHistory();
 
   const handleMenu = (event) => {
     setShowOptions(event.currentTarget);
@@ -21,6 +23,7 @@ export default function BotonCerrarSesion() {
   const cerrarSesion = () => {
     setUser(new DefaultValue());
     handleClose();
+    history.push('/login');
   };
 
   return (
