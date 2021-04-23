@@ -25,16 +25,12 @@ export default function Login() {
   const { create } = useApi('usuarios/login');
 
   const [showPassword, setShowPassword] = useState(false);
-  const [haveErrorIn, setHaveErrorIn] = useState({
-    email: false,
-    password: false,
-    showError: false,
-  });
+  const [haveErrorIn, setHaveErrorIn] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const [userData, setUserData] = useState({
     email: '',
-    contrasenia: '',
+    password: '',
   });
 
   const setUser = useSetRecoilState(userState);
@@ -55,17 +51,16 @@ export default function Login() {
   };
 
   const validateLogin = async () => {
-    setHaveErrorIn({ ...haveErrorIn, showError: false });
+    setHaveErrorIn(false);
     setLoading(true);
 
     try {
       const user = await create(userData);
       setUser(user);
-      console.log(user);
       history.push(initialUserRoute(user));
     } catch (error) {
       setLoading(false);
-      setHaveErrorIn({ ...haveErrorIn, showError: true });
+      setHaveErrorIn(true);
     }
   };
 
@@ -102,13 +97,13 @@ export default function Login() {
         <Grid item xs={12}>
           <Grid item xs={9} sm={7} md={4}>
             <TextValidator
-              id="contrasenia"
+              id="password"
               label={TEXT.passwordGet}
-              name="contrasenia"
+              name="password"
               type={showPassword ? 'text' : 'password'}
               onChange={handleChange}
               fullWidth
-              value={userData.contrasenia}
+              value={userData.password}
               validators={['required']}
               errorMessages={[TEXT.required]}
               InputProps={{
@@ -132,7 +127,7 @@ export default function Login() {
           </Grid>
         </Grid>
 
-        {haveErrorIn.showError && (
+        {haveErrorIn && (
           <Grid item xs={12} align="center">
             <Typography color="error">{TEXT.loginError}</Typography>
           </Grid>
@@ -145,7 +140,7 @@ export default function Login() {
         </Grid>
         <Grid item xs={6}>
           <Button variant="contained" color="inherit" onClick={goToSignUp}>
-            {TEXT.register}
+            {TEXT.signUp}
           </Button>
         </Grid>
       </Grid>

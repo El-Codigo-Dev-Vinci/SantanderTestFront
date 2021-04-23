@@ -2,10 +2,6 @@ import { has } from 'ramda';
 import { atom, selector } from 'recoil';
 import { localStorageEffect } from './effect';
 
-export function initialUserRoute(user) {
-  return '/';
-}
-
 export const userState = atom({
   key: 'usuario',
   default: {},
@@ -16,3 +12,12 @@ export const haveLogUser = selector({
   key: 'haveLogUser',
   get: ({ get }) => has('token', get(userState)),
 });
+
+export const initialUserRouteState = selector({
+  key: 'initialUserRouteState',
+  get: ({ get }) => initialUserRoute(get(userState)),
+});
+
+export function initialUserRoute(user) {
+  return '/home';
+}
