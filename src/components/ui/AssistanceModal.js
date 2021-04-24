@@ -1,9 +1,14 @@
-import { Button, Dialog, DialogActions, DialogTitle } from '@material-ui/core';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogTitle,
+  withStyles,
+} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { useNotifyUpdate } from '../../state/stateUpdate';
 import { useApi } from '../../utils/fetchApi';
 import { TEXT } from '../../text/Text';
-import { DangerButton } from './Buttons';
 
 export default function DeleteModal({
   openModal,
@@ -12,14 +17,14 @@ export default function DeleteModal({
   meetToDelete,
 }) {
   const notifyUpdate = useNotifyUpdate(route);
-  const { deleteById } = useApi(route);
+  const { create } = useApi(route);
 
   const closeModal = () => {
     setOpenModal(false);
   };
 
-  const deleteFile = async () => {
-    await deleteById(meetToDelete.id);
+  const goToMeetup = async () => {
+    await create(meetToDelete.id);
     await notifyUpdate();
     closeModal();
   };
@@ -31,13 +36,13 @@ export default function DeleteModal({
       open={openModal}
     >
       <DialogTitle id="alert-dialog-slide-title">
-        ¿Are you sure you want to delete <strong>{meetToDelete?.name}</strong>?
+        ¿Do you want to go to <strong>{meetToDelete?.name}</strong>?
       </DialogTitle>
       <DialogActions>
         <Button onClick={closeModal}>{TEXT.cancel}</Button>
-        <DangerButton variant="contained" onClick={deleteFile}>
-          {TEXT.delete}
-        </DangerButton>
+        <SuccessButton variant="contained" onClick={goToMeetup}>
+          {TEXT.accept}
+        </SuccessButton>
       </DialogActions>
     </Dialog>
   );
@@ -49,3 +54,13 @@ DeleteModal.propTypes = {
   route: PropTypes.string,
   meetToDelete: PropTypes.object,
 };
+
+export const SuccessButton = withStyles(({ palette }) => ({
+  root: {
+    color: palette.success.contrastText,
+    backgroundColor: palette.success.main,
+    '&:hover': {
+      backgroundColor: palette.success.dark,
+    },
+  },
+}))(Button);

@@ -8,15 +8,25 @@ import {
 } from '@material-ui/core';
 import { PropTypes } from 'prop-types';
 import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { userIsAdmin } from '../../state/user';
 import { dateFormatter } from '../../utils/dateFormat';
 import DeleteModal from './DeleteModal';
+import AssistanceModal from './AssistanceModal';
+import { CancelButton, SuccessButton } from './Buttons';
 
 export default function CardMeetUp(props) {
   const { meet } = props;
-  const [openModal, setOpenModal] = useState(false);
+  const isAdmin = useRecoilValue(userIsAdmin);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [openAssistanceModal, setOpenAssistanceModal] = useState(false);
 
   const deleteMeet = () => {
-    setOpenModal(true);
+    setOpenDeleteModal(true);
+  };
+
+  const assistanceMeet = () => {
+    setOpenAssistanceModal(true);
   };
 
   return (
@@ -24,19 +34,31 @@ export default function CardMeetUp(props) {
       <Card>
         <CardContent>
           <Typography>{meet.name}</Typography>
-
           <Typography>{meet.description}</Typography>
           <Typography>{dateFormatter(meet.date)}</Typography>
         </CardContent>
         <CardActions>
-          <CancelButton size="small" onClick={deleteMeet}>
-            Delete Meeting
-          </CancelButton>
+          {isAdmin ? (
+            <CancelButton size="small" onClick={deleteMeet}>
+              Delete Meeting
+            </CancelButton>
+          ) : (
+            <SuccessButton size="small" onClick={assistanceMeet}>
+              Go
+            </SuccessButton>
+          )}
         </CardActions>
       </Card>
+      <AssistanceModal
+        openModal={openAssistanceModal}
+        setOpenModal={setOpenAssistanceModal}
+        route={'assistance'}
+        meetToDelete={meet}
+      />
+
       <DeleteModal
-        openModal={openModal}
-        setOpenModal={setOpenModal}
+        openModal={openDeleteModal}
+        setOpenModal={setOpenDeleteModal}
         route={'meetup'}
         meetToDelete={meet}
       />
@@ -47,12 +69,3 @@ export default function CardMeetUp(props) {
 CardMeetUp.propTypes = {
   meet: PropTypes.object,
 };
-
-const CancelButton = withStyles(({ palette }) => ({
-  root: {
-    color: palette.error.main,
-    '&:hover': {
-      color: palette.error.dark,
-    },
-  },
-}))(Button);

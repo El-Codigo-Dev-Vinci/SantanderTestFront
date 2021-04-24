@@ -22,7 +22,7 @@ import { LoadingButton } from '../ui/LoadingButton';
 export default function Login() {
   const classes = useStyles();
   const history = useHistory();
-  const { create } = useApi('usuarios/login');
+  const { create } = useApi('user/login');
 
   const [showPassword, setShowPassword] = useState(false);
   const [haveErrorIn, setHaveErrorIn] = useState(false);
@@ -56,7 +56,7 @@ export default function Login() {
 
     try {
       const user = await create(userData);
-      setUser(user);
+      setUser(user.data);
       history.push(initialUserRoute(user));
     } catch (error) {
       setLoading(false);
