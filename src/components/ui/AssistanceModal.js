@@ -9,22 +9,23 @@ import PropTypes from 'prop-types';
 import { useNotifyUpdate } from '../../state/stateUpdate';
 import { useApi } from '../../utils/fetchApi';
 import { TEXT } from '../../text/Text';
+import { useRecoilValue } from 'recoil';
+import { userState } from '../../state/user';
 
-export default function DeleteModal({
-  openModal,
-  setOpenModal,
-  route,
-  meetToDelete,
-}) {
+export default function DeleteModal({ openModal, setOpenModal, route, meet }) {
   const notifyUpdate = useNotifyUpdate(route);
   const { create } = useApi(route);
+  const user = useRecoilValue(userState);
 
   const closeModal = () => {
     setOpenModal(false);
   };
 
   const goToMeetup = async () => {
-    await create(meetToDelete.id);
+    await create({
+      userId: user.id,
+      meetupId: meet.id,
+    });
     await notifyUpdate();
     closeModal();
   };
@@ -35,8 +36,9 @@ export default function DeleteModal({
       aria-labelledby="simple-dialog-title"
       open={openModal}
     >
+      {console.log(meet)}
       <DialogTitle id="alert-dialog-slide-title">
-        ¿Do you want to go to <strong>{meetToDelete?.name}</strong>?
+        ¿Do you want to go to <strong>{meet?.name}</strong>?
       </DialogTitle>
       <DialogActions>
         <Button onClick={closeModal}>{TEXT.cancel}</Button>
@@ -52,7 +54,7 @@ DeleteModal.propTypes = {
   openModal: PropTypes.bool,
   setOpenModal: PropTypes.func,
   route: PropTypes.string,
-  meetToDelete: PropTypes.object,
+  meet: PropTypes.object,
 };
 
 export const SuccessButton = withStyles(({ palette }) => ({

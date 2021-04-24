@@ -53,7 +53,7 @@ export default function CardMeetUp(props) {
         openModal={openAssistanceModal}
         setOpenModal={setOpenAssistanceModal}
         route={'assistance'}
-        meetToDelete={meet}
+        meet={meet}
       />
 
       <DeleteModal
