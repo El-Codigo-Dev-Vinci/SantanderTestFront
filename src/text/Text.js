@@ -4,6 +4,8 @@ export const TEXT = {
   logOut: 'Log out',
   signUp: 'Sign up',
   cancel: 'Cancel',
+  delete: 'Delete',
+  accept: 'Accept',
   forgotPassword: '¿Forgot password?',
   //ERRORS
   required: 'This field is required',

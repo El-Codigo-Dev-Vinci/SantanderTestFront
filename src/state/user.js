@@ -21,3 +21,12 @@ export const initialUserRouteState = selector({
 export function initialUserRoute(user) {
   return '/home';
 }
+
+export const userIsAdmin = selector({
+  key: 'userIsAdmin',
+  get: ({ get }) => userIsAdminState(get(userState)),
+});
+
+export function userIsAdminState(user) {
+  return user?.role === 'admin';
+}

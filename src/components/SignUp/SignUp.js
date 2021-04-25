@@ -13,7 +13,7 @@ import { TEXT } from '../../text/Text';
 
 export default function SignUp() {
   const history = useHistory();
-  const { create } = useApi('usuarios/registro');
+  const { create } = useApi('user/signup');
 
   ValidatorForm.addValidationRule(
     'isPasswordMatch',
@@ -50,7 +50,7 @@ export default function SignUp() {
 
     create(userData)
       .then((user) => {
-        setUser(user);
+        setUser(user.data);
         history.push('/home');
       })
       .catch((err) => {

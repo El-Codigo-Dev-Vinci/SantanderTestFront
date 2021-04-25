@@ -1,5 +1,9 @@
 import { DateTime } from 'luxon';
 
-export const dateFormatter = (fecha) => {
-  return DateTime.fromISO(fecha).setLocale('es').toFormat('D');
+export const dateFormatter = (date) => {
+  return DateTime.fromISO(date).setLocale('es').toFormat('D');
+};
+
+export const hourFormatter = (date) => {
+  return DateTime.fromISO(date).setLocale('es').toFormat('T');
 };

@@ -5,7 +5,7 @@ import { useRecoilValue } from 'recoil';
 import { userState } from '../../state/user';
 
 export default function Home() {
-  const user = useRecoilValue(userState).data;
+  const user = useRecoilValue(userState);
 
   return (
     <>
