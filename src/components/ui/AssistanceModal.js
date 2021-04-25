@@ -12,8 +12,13 @@ import { TEXT } from '../../text/Text';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../../state/user';
 
-export default function DeleteModal({ openModal, setOpenModal, route, meet }) {
-  const notifyUpdate = useNotifyUpdate(route);
+export default function AssistanceModal({
+  openModal,
+  setOpenModal,
+  route,
+  meet,
+}) {
+  const notifyUpdate = useNotifyUpdate('meetup');
   const { create } = useApi(route);
   const user = useRecoilValue(userState);
 
@@ -49,7 +54,7 @@ export default function DeleteModal({ openModal, setOpenModal, route, meet }) {
   );
 }
 
-DeleteModal.propTypes = {
+AssistanceModal.propTypes = {
   openModal: PropTypes.bool,
   setOpenModal: PropTypes.func,
   route: PropTypes.string,

@@ -45,7 +45,7 @@ export default function CreateNewMeetUp() {
           <Grid item xs={11} align="left">
             <Typography variant="h4">Add new meetup</Typography>
           </Grid>
-          <Grid container xs={12} align="left" className={classes.body}>
+          <Grid container align="left" className={classes.body}>
             <Grid item xs={12} sm={6} align="center">
               <Grid
                 item
