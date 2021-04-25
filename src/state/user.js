@@ -1,5 +1,5 @@
 import { has } from 'ramda';
-import { atom, selector, useRecoilValue } from 'recoil';
+import { atom, selector } from 'recoil';
 import { localStorageEffect } from './effect';
 
 export const userState = atom({

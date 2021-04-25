@@ -36,7 +36,6 @@ export default function DeleteModal({ openModal, setOpenModal, route, meet }) {
       aria-labelledby="simple-dialog-title"
       open={openModal}
     >
-      {console.log(meet)}
       <DialogTitle id="alert-dialog-slide-title">
         ¿Do you want to go to <strong>{meet?.name}</strong>?
       </DialogTitle>
