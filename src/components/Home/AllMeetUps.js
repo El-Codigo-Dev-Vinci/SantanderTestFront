@@ -1,8 +1,6 @@
 import {
   Box,
-  Button,
   Grid,
-  IconButton,
   makeStyles,
   Typography,
   useMediaQuery,
@@ -10,8 +8,6 @@ import {
 import { useRecoilValue } from 'recoil';
 import { allMeetUps } from '../../state/meetups';
 import CardMeetUp from '../ui/CardMeetUp';
-import DeleteIcon from '@material-ui/icons/Delete';
-import { dateFormatter } from '../../utils/dateFormat';
 
 export default function AllMeetUps() {
   const classes = useStyles();
@@ -21,9 +17,12 @@ export default function AllMeetUps() {
   return (
     <Grid container spacing={4} align="center" className={classes.root}>
       <Grid item xs={12}>
-        <Grid item xs={11} align="left">
-          <Typography variant="h4">All meetups</Typography>
+        <Grid item xs={11} align="center" className={classes.title}>
+          <Typography variant="h4" color="primary">
+            All meetups
+          </Typography>
         </Grid>
+
         <Grid container spacing={2} align="left">
           {meetUpsRecoil.map((meet, i) => {
             return matches ? (
@@ -52,10 +51,6 @@ export default function AllMeetUps() {
 }
 
 const useStyles = makeStyles(() => ({
-  root: {
-    backgroundColor: '#e0e0e0',
-    marginTop: '50px',
-  },
   body: {
     backgroundColor: 'white',
   },

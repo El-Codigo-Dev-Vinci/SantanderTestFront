@@ -1,5 +1,5 @@
 import { Box, IconButton, Menu, MenuItem } from '@material-ui/core';
-import { DefaultValue, useRecoilState } from 'recoil';
+import { DefaultValue, useSetRecoilState } from 'recoil';
 import { useState } from 'react';
 import { userState } from '../../state/user';
 import { TEXT } from '../../text/Text';
@@ -7,7 +7,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { useHistory } from 'react-router';
 
 export default function BotonCerrarSesion() {
-  const [user, setUser] = useRecoilState(userState);
+  const setUser = useSetRecoilState(userState);
   const [showOptions, setShowOptions] = useState(null);
   const open = Boolean(showOptions);
   const history = useHistory();

@@ -13,13 +13,13 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { Alert } from '@material-ui/lab';
 
 ReactDOM.render(
-  <ThemeProvider>
+  <ThemeProvider theme={theme}>
     <React.StrictMode>
       <CssBaseline />
       <RecoilRoot>
         <Suspense fallback={<CircularProgress />}>
           <ErrorBoundary
-            fallback={<Alert severity="error">Algo se rompió feo :(</Alert>}
+            fallback={<Alert severity="error">Something is broken :(</Alert>}
           >
             <App />
           </ErrorBoundary>
@@ -30,7 +30,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

@@ -40,10 +40,12 @@ export default function CreateNewMeetUp() {
 
   return (
     <ValidatorForm onSubmit={createNewMeet} instantValidate={false}>
-      <Grid container spacing={4} align="center" className={classes.root}>
+      <Grid container spacing={4} align="center">
         <Grid item xs={12}>
-          <Grid item xs={11} align="left">
-            <Typography variant="h4">Add new meetup</Typography>
+          <Grid item xs={11} align="center" className={classes.title}>
+            <Typography variant="h4" color="primary">
+              Add new meetup
+            </Typography>
           </Grid>
           <Grid container align="left" className={classes.body}>
             <Grid item xs={12} sm={6} align="center">
@@ -128,10 +130,6 @@ export default function CreateNewMeetUp() {
 }
 
 const useStyles = makeStyles(() => ({
-  root: {
-    backgroundColor: '#e0e0e0',
-    marginTop: '20px',
-  },
   body: {
     backgroundColor: 'white',
   },

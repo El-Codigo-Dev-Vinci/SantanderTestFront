@@ -56,6 +56,7 @@ export default function SignUp() {
       .catch((err) => {
         setLoadingIcon(false);
         setHaveError(true);
+        console.log(err);
       });
   };
 

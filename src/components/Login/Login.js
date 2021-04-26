@@ -6,7 +6,7 @@ import {
   makeStyles,
   Typography,
 } from '@material-ui/core';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import React, { useState } from 'react';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import IconButton from '@material-ui/core/IconButton';

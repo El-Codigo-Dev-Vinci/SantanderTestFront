@@ -1,7 +1,8 @@
-import { DateTime } from 'luxon';
+import { DateTime, Duration } from 'luxon';
 
 export const dateFormatter = (date) => {
-  return DateTime.fromISO(date).setLocale('es').toFormat('D');
+  let dur = Duration.fromObject({ hour: 3 });
+  return DateTime.fromISO(date).plus(dur).setLocale('es').toFormat('DDD');
 };
 
 export const hourFormatter = (date) => {

@@ -59,6 +59,7 @@ export default function CardMeetUp(props) {
     <>
       <Card>
         <CardContent>
+          {console.log(meet.date)}
           <Box display="flex" flexDirection="row">
             <TitleIcon />
             <Typography>{meet.name}</Typography>
